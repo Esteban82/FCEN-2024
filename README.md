@@ -5,9 +5,6 @@ Por Federico D. Esteban<sup>1, 2</sup>
 > <br>
 > <sup>2</sup> CONICET - UBA. Grupo de [Prospección Geológica y Geofísica Lacustre y Marina](https://www.geoflama.ar/) (GeofLaMa) del [Instituto de Geociencias Básicas, Aplicadas y ambientales de Buenos Aires (IGEBA)](http://igeba.gl.fcen.uba.ar/), Buenos Aires, Argentina.
 
-## Clases grabadas (de la edición 2022)
-
-Link de youtube: https://youtube.com/playlist?list=PL_Tmlw4NuPWqcVdpPQHfjL8hXhyfzuaCW
 
 ## Información del Curso
 
@@ -52,4 +49,4 @@ Ver información, requisitos y aranceles para inscripción formal en https://exa
 
 ## Referencias
 
-Parte de este tutorial fue adaptado de https://github.com/GenericMappingTools/2021-unavco-course, el cual esta bajo licencia de Creative Commons Attribution 4.0 license.
+Parte de este tutorial fue adaptado de https://github.com/Esteban82/FCEN-2022, el cual esta bajo licencia de Creative Commons Attribution 4.0 license.
