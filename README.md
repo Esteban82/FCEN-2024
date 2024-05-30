@@ -41,11 +41,12 @@ Para el curso **no** se requieren conocimientos previos de informática.
 
 ## Programa Analítico
 
-Ver [aquí](https://github.com/Esteban82/FCEN-2022/blob/main/Programa.md) para detalles del programa, objetivos, bibliografía.
+Ver [aquí](https://github.com/Esteban82/FCEN-2024/blob/main/Programa.md) para detalles del programa, objetivos, bibliografía.
 
 ## Pre-inscripción, Inscripción y Aranceles
 
-Ver [aquí](https://github.com/Esteban82/FCEN-2022/blob/main/Inscripcion.md) para detalles de la inscripción y aranceles.
+Informes y Pre-Inscripción, consultas por email al profesor: federico.esteban@gmail.com
+Ver información, requisitos y aranceles para inscripción formal en https://exactas.uba.ar/ensenanza/cursos-de-posgrado/
 
 
 ## Referencias
