@@ -57,11 +57,11 @@ colores, norte, mapa de ubicación.
 
 ## 5. Bibliografía
 
-• Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., Tian, D., Jones, M., & Esteban, F. (2024). The Generic Mapping Tools version 6.5.0 (6.5.0). Zenodo. https://doi.org/10.5281/zenodo.10119499
+• Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., Tian, D., Jones, M., & Esteban, F. (2024). The Generic Mapping Tools version 6.5.0 (6.5.0). Zenodo. https://doi.org/10.5281/zenodo.10119499.
 
 • Sitio oficial de GMT: https://www.generic-mapping-tools.org/.
 
-• Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., & Tian, D. (2019). The Generic Mapping Tools version 6. Geochemistry, Geophysics, Geosystems, 20, 5556–5564. https://doi.org/10.1029/2019GC008515
+• Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., & Tian, D. (2019). The Generic Mapping Tools version 6. Geochemistry, Geophysics, Geosystems, 20, 5556–5564. https://doi.org/10.1029/2019GC008515.
 
 ## 6. Licencia
 
