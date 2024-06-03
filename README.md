@@ -31,7 +31,7 @@ Por Federico D. Esteban<sup>1, 2</sup>
 En el curso se trabajará con computadoras. Es **muy recomendable** que cada uno pueda asistir con una *notebook* para trabajar.
 
 ## Dirigido a:
-El curso esta destinado a alumnos/as de postgrado, profesores/as y profesionales de geología, geofísica y disciplinas afines.
+El curso esta destinado a estudiantes de postgrado, profesores/as y profesionales de geología, geofísica y disciplinas afines.
 
 ## Conocimientos previos
 Para el curso **no** se requieren conocimientos previos de informática.
