@@ -46,6 +46,11 @@ Informes y Pre-Inscripción, consultas por email al profesor: federico.esteban@g
 
 Ver información, requisitos y aranceles para inscripción formal en https://exactas.uba.ar/ensenanza/cursos-de-posgrado/.
 
+## Inscripción
+
+Se realizará a través del [SIU Guarani](https://inscripciones.exactas.uba.ar/autogestion/) de la FCEN.
+Inscripción a materias: lunes 24 de junio
+Fin de inscripción a materias: sábado 6 de julio
 
 ## Referencias
 
