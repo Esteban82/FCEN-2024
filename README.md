@@ -42,7 +42,7 @@ Ver [aquí](https://github.com/Esteban82/FCEN-2024/blob/main/Programa.md) para d
 
 ## Pre-inscripción, Inscripción y Aranceles
 
-Informes y Pre-Inscripción, consultas por email al profesor: federico.esteban@gmail.com.
+Información y consultas sobre el curso: federico.esteban@gmail.com.
 
 Ver información, requisitos y aranceles para inscripción formal en https://exactas.uba.ar/ensenanza/cursos-de-posgrado/.
 
