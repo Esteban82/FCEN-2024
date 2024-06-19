@@ -50,7 +50,7 @@ Ver información, requisitos y aranceles para inscripción formal en https://exa
 
 Se realizará a través del [SIU Guarani](https://inscripciones.exactas.uba.ar/autogestion/) de la FCEN.
 
-Inscripción a materias: del lunes 24 de junio al sábado 6 de julio.
+Fechas de inscripción: del lunes 24 de junio al sábado 6 de julio.
 
 ## Referencias
 
