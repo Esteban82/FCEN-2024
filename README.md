@@ -18,7 +18,7 @@ Por Federico D. Esteban<sup>1, 2</sup>
 
 • Lugar: [Departamento de Ciencias Geológicas de la Facultad de Ciencias Exactas y Naturales de la Universidad de Buenos Aires (FCEN-UBA)](http://www.gl.fcen.uba.ar/). Pabellón 2, Ciudad Universitaria, Buenos Aires. Google maps [link](https://goo.gl/maps/hWZKoahv8Bz7nfDu9).
 
-• Aula: 33 ([link]([url](http://www.gl.fcen.uba.ar/index.php/institucional/mapa-del-departamento/)) del mapa de departamento de geología con la ubicación de las aulas). 
+• Aula: 33 ([link](http://www.gl.fcen.uba.ar/index.php/institucional/mapa-del-departamento/) del mapa de departamento de geología con la ubicación de las aulas). 
 
 • Modalidad: **Presencial**.
 
