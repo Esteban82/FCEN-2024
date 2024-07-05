@@ -1,6 +1,6 @@
 # Instalación del *software* necesario
 
-Por favor, sigue estas instrucciones para instalar GMT 6.4 y el resto de los *softwares* que se utilizarán. Aquí tienes un resumen de lo que necesitarás:
+Por favor, sigue estas instrucciones para instalar GMT 6.5 y el resto de los *softwares* que se utilizarán. Aquí tienes un resumen de lo que necesitarás:
 
  La instalación depende del sistema operativo que uses:
 
@@ -31,4 +31,4 @@ En [este video](https://www.youtube.com/watch?v=1bPMIN7noTI&feature=youtu.be) se
 
 
 # Editor de Texto:
-Los [editores de texto](https://es.wikipedia.org/wiki/Editor_de_texto) sirven para escribir/editar archivos de texto plano (sin formato) como los scripts de GMT. Cualquier editor es válido y puedes utilizar el que prefieras. Sin embargo, recomendamos instalar la versión "estable" de Visual Studio Code (VSC) o [gedit](https://wiki.gnome.org/Apps/Gedit). Otros editores que se pueden usar son [Vim](https://www.vim.org/), [Atom](https://atom.io/), etc.
+Los [editores de texto](https://es.wikipedia.org/wiki/Editor_de_texto) sirven para escribir/editar archivos de texto plano (sin formato) como los scripts de GMT. Cualquier editor es válido y puedes utilizar el que prefieras. Sin embargo, recomiendo instalar la versión "estable" de Visual Studio Code (VSC) o [gedit](https://wiki.gnome.org/Apps/Gedit). Otros editores que se pueden usar son [Vim](https://www.vim.org/), [Atom](https://atom.io/), etc.
