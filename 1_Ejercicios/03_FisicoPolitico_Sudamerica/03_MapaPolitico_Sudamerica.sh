@@ -5,7 +5,6 @@
 #	2. Definir las propiedades de las lineas en GMT (color, ancho, estilo).
 #	3. Definir regiones del mapa con WESN
 
-
 #	Definir variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
@@ -34,9 +33,9 @@ gmt begin $title png
 #	Resaltar paises DCW (AR: Argentina soberana, FK: Malvinas, GS: Georgias del Sur y Sandwich del Sur, CO: Colombia)
 	gmt coast -EAR,FK,GS+grosybrown2+p
 
-#	Pintar areas húmedas: Oceanos (-S) y Lagos (-Cl/)f
+#	Pintar areas húmedas: Oceanos (-S) y Lagos (-Ccolor+l)
 	color=117/197/240
-	gmt coast -Sdodgerblue2 -Cl/$color
+	gmt coast -Sdodgerblue2 -C$color+l
 
 #	Dibujar Bordes Administrativos. N1: paises. N2: Provincias, Estados, etc. N3: limites marítimos (Nborder[/pen])
 	gmt coast -Df -N1/0.75

@@ -30,9 +30,9 @@ clear
 #	PROJ=M15c
 
 #	Region geografica del mapa (W/E/S/N) d=-180/180/-90/90 g=0/360/-90/90
-	#REGION=d
-#	REGION=-100/30/-90/20	
-	REGION=-110/30/-50/20
+	REGION=d
+	#REGION=-100/30/-90/20	
+	#REGION=-110/30/-50/20
 	#REGION=AR
 
 #	Parametros por Defecto
@@ -62,7 +62,7 @@ gmt begin $title png
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Cerrar la sesion y mostrar archivo
-gmt end show
+gmt end #show
 
 rm gmt.*
 

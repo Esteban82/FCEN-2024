@@ -34,17 +34,17 @@ gmt begin $title png
 
 #	Pintar areas húmedas: Oceanos (-S) y Lagos (-C+l) y Rios-Lagos (-C+r)
 	color=dodgerblue2
-	gmt coast -Df -S$color -Cgreen+l -Cred+r
+	gmt coast -Da -S$color -Cgreen+l -Cred+r
 
 #	Resaltar paises DCW (AR: Argentina soberana, FK: Malvinas, GS: Georgias del Sur y Sandwich del Sur)
 	gmt coast -EAR,FK,GS+grosybrown2+p
 
 #	Dibujar Bordes Administrativos. N1: paises. N2: Provincias, Estados, etc. N3: limites marítimos (Nborder[/pen])
-	gmt coast -Df -N1/0.75
-#	gmt coast -Df -N2/0.25,-.
+	gmt coast -Da -N1/0.75
+#	gmt coast -Da -N2/0.25,-.
 
 #	Dibujar Linea de Costa (level/, where level is 1-4 and represent coastline, lakeshore, island-in-lake shore, and lake-in-island-in-lake shore)
-	gmt coast -Df -W1/0.25
+	gmt coast -Da -W1/0.25
 
 #	Datos Instituto Geografico Nacional Argentino (IGN)
 #	-----------------------------------------------------------------------------------------------------------
@@ -57,8 +57,10 @@ gmt begin $title png
 #	-S -W -G: dibuja simbolos con relleno y borde
 
 #	Cursos y Cuerpos de Agua
-	gmt plot "IGN/areas_de_aguas_continentales_perenne.shp" -G$color
-	gmt plot "IGN/lineas_de_aguas_continentales_perenne.shp" -Wfaint,blue  # Descargar archivo desde el IGN
+	#URL="https://dnsg.ign.gob.ar/apps/api/v1/capas-sig/Hidrograf%C3%ADa+y+oceanograf%C3%ADa/Aguas+continentales/lineas_de_aguas_continentales_perenne/shp"
+	#gmt which -Gc $URL
+	#gmt plot "IGN/areas_de_aguas_continentales_perenne.shp" -G$color
+	#gmt plot "IGN/lineas_de_aguas_continentales_perenne.shp" -Wfaint,blue  # Descargar archivo desde el IGN
 
 #	Limites Interprovincial
 	gmt plot "IGN/linea_de_limite_070111.shp" -Wthinner,black,-.
@@ -85,3 +87,4 @@ gmt end #show
 #	1. Ejercicio de combinación de argumentos -S -G -W para dibujar símbolos, líneas y áreas (lineas 77 a 83).
 #	2. Dibujar los pueblos con distintos símbolos (estrella, cuadrado, círculo).
 #	3. Descargar otro shp del IGN (o de otro repositorio) y graficarlo. 
+#	Sitio Web: https://www.ign.gob.ar/NuestrasActividades/InformacionGeoespacial/CapasSIG
