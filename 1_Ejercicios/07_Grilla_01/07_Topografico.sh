@@ -26,7 +26,7 @@ clear
 #	Fuente a utilizar
 	GRD=@earth_relief_$RES
 
-	gmt set GMT_VERBOSE i
+	gmt set GMT_VERBOSE w
 
 #	Dibujar mapa
 #	-----------------------------------------------------------------------------------------------------------
