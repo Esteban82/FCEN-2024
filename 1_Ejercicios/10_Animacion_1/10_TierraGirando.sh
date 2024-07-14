@@ -18,7 +18,7 @@ title=10_TierraGirando
 	gmt movie "Master_Hemisferico.sh" -N$title -T"tmp_time.txt" -C15cx15cx10 -D24 -Vi -Ml,png -Gblack -Fmp4 -Z
 
 #	Borrar Temporales
-	rm gmt.conf
+	rm gmt.conf tmp_time.txt
 #	-------------------------------------------------
 #	Apagar (-s) o Hibernar (/h) PC
 #	Linux
