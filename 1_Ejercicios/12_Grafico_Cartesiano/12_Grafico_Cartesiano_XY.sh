@@ -36,11 +36,11 @@ gmt begin $title png
 	gmt basemap -R$REGION -J$PROJ -B+n
 
 #	Titulo de la figura (-B+t)
-	gmt basemap -B+t"Diagrama Harker \341"
+	gmt basemap -B+t"Diagrama Harker"
 
 #	Definir color de fondo del grafico (-B+g). Porcentaje de transparencia (-t)
-#	gmt basemap -B+g200
-	gmt basemap -B+gblack -t80
+	gmt basemap -B+g200
+#	gmt basemap -B+gblack -t80
 
 #	Titulo de los ejes (X Y) por separado: (a)notacion), (f)rame y (l)abel. Agregar prefijo (+p) y unidad (+u) a los valores. @- Inicio/Fin Subindice. 
 	gmt basemap -Bxa5f1+l"SiO@-2@- (wt. \045)"

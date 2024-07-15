@@ -2,7 +2,7 @@
 clear
 
 #	Temas a ver:
-#	1. Crear bloques 3D.
+#	1. Crear bloques 3D a partir de un DEM.
 
 #	Definir Variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ clear
 
 # 	Nombre archivo de salida y Variables Temporales
 	CUT=tmp_$title.nc
-	SHADOW=tmp_$title-shadow.nc
+	SHADOW=tmp_${title}_shadow.nc
 
 #	Parametros Generales
 #	-----------------------------------------------------------------------------------------------------------
