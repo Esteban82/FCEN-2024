@@ -40,7 +40,7 @@ clear
 #	Grafico Cartesiano
 #	-----------------------------------------------------------------------------------------------------------
 #	Iniciar sesion y tipo de figura
-gmt begin $(title png
+gmt begin $title png
 
 #	Extraer informacion
 #	gmt histogram "U-PB_Ages.txt" -Io -Z$Z -T$T				# Muestra infomracion en la terminal
@@ -65,7 +65,7 @@ gmt begin $(title png
 #	Cerrar la sesion y mostrar archivo
 gmt end
 
-	rm gmt.* tmp_info
+	rm gmt.* tmp_info -f
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Ejercicios Sugeridos:

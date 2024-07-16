@@ -30,24 +30,11 @@ gmt begin $title png
 
 #	Preparar Datos
 #	-----------------------------------------------------------------------------------------------------------
-#	Calcular Azimuth (-AF) y longitud en km (-G+k). -fg: Datos geográficos. Mostrar informacion.
-#	gmt mapproject -fg "Datos.txt" -G+k
-#	gmt mapproject -fg "Datos.txt" -AF
-#	gmt mapproject -fg "Datos.txt" -AF -G+k
-#	gmt mapproject -fg "Datos.txt" -AF -G+k -o3,2
-#	gmt mapproject -fg "Datos.txt" -AF -G+k -o3,2 -s
-
 #	Calcular Azimuth (-AF) y longitud en km (-G+k). -fg: Datos geográficos. Grabar datos.
-#	gmt mapproject -fg "Datos.txt" -AF -G+k -o3,2 -s > "tmp_rumbo" 
+	gmt mapproject -fg "Datos.txt" -AF -G+k -o3,2 -s > "tmp_rumbo" 
 
 #	Extraer informacion
 #	--------------------------------------------------------------------------------------------------------
-#	Datos Estadisticos:
-	echo n, mean az, mean r, mean resultant length, max bin sum, scaled mean, linear length sum.
-	gmt rose "tmp_rumbo" $Param -I 
-	gmt rose "tmp_rumbo" $Param -I -o0
-#	gmt rose "tmp_rumbo" $Param -I -o1 --FORMAT_FLOAT_OUT=%.0f
-
 #	Extraer cantidad de datos y azimuth promedio
 	n=$(gmt rose "tmp_rumbo" $Param -I -o0)
 	az=$(gmt rose "tmp_rumbo" $Param -I -o1 --FORMAT_FLOAT_OUT=%.0f)
@@ -60,14 +47,14 @@ gmt begin $title png
 
 #	Texto con informacion
 	echo N = $n        | gmt text -R1/10/1/10 -JX10 -F+cTL -Ya0.375c
-	echo Mean Az = $az | gmt text -R1/10/1/10 -JX10 -F+cTL 
+	echo Mean Az = $az | gmt text -R1/10/1/10 -JX10 -F+cTL
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Cerrar la sesion y mostrar archivo
 gmt end
 
 #	Borrar archivos temporales
-#rm tmp_* gmt.*
+rm tmp_* gmt.* -f
 
 #	Ejercicios sugeridos
 #	1. Cambiar el ancho de clase (linea 20).

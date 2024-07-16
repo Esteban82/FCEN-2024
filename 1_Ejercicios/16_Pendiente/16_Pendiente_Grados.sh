@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export http_proxy="http://proxy.fcen.uba.ar:8080"
 
 #	Temas a ver
 #	1. Procesar grillas (calcular mapa de pendientes)
@@ -19,7 +20,7 @@
 	PROJ=M15c
 
 #	Grilla de entrada
-	GRD=@earth_relief_30s_p
+	GRD=@earth_relief_30s
 
 # 	Archivos temporales
 	CUT=tmp_$title.nc
@@ -35,33 +36,36 @@ gmt begin $title png
 #	Calcular grilla de pendientes (en grados)
 #	---------------------------------------------
 #	Recortar Grilla
-	#gmt grdcut $GRD -G$CUT -R$REGION
+	gmt grdcut $GRD -G$CUT -R$REGION
 
 #	Calcular Grilla con modulo del gradiente (-D) para grilla con datos geograficos (-fg)
-	#gmt grdgradient $CUT -D -S$CUT -fg
+	gmt grdgradient $CUT -D -Stmp_modulo -fg
 
 #	Convertir modulo del gradiente a inclinacion (pendiente) en grados (ATAND).
-	#gmt grdmath $CUT ATAND = $CUT
+	gmt grdmath tmp_modulo ATAND = $CUT
 #	---------------------------------------------
 
 #	Obterner Informacion de la grilla para crear paleta de colores (makecpt)
-	gmt grdinfo $CUT
-	gmt grdinfo $CUT -T2
-	gmt grdinfo $CUT -T 
-	gmt grdinfo $CUT -T+a0.5
-	gmt grdinfo $CUT -T+a1
-	gmt grdinfo $CUT -T+a2
+#	gmt grdinfo $CUT
+#	gmt grdinfo $CUT -T2
+#	gmt grdinfo $CUT -T 
+#	gmt grdinfo $CUT -T+a0.5
+#	gmt grdinfo $CUT -T+a1
+#	gmt grdinfo $CUT -T+a2
 	#gmt grdinfo $CUT -T+a5
 	
 #	Crear variables con los valores minimo y maximo 
 	T=$(gmt grdinfo $CUT -T+a0.5)
 	max=`gmt grdinfo $CUT -Cn -o5`
+	echo $max
+	max2=$(gmt grdinfo $CUT -Cn -o5)
+	echo $max2
 #	echo $T
 
 #	Crear Paleta de Colores. Paleta Maestra (-C), Definir rango (-Tmin/max/intervalo).
-#	gmt makecpt -Crainbow -I -T10/30 #-D
+	gmt makecpt -Crainbow -I -T10/30 #-D
 #	gmt makecpt -Crainbow -I $T
-	gmt makecpt -Crainbow -I -T0/$max
+#	gmt makecpt -Crainbow -I -T0/$max
 #	gmt makecpt -Crainbow -I -D -T0/$max
 #	gmt makecpt -Crainbow -T6/30/2 -I
 
@@ -92,3 +96,4 @@ gmt end
 
 #	Ejercicios sugeridos
 #	1. Cambiar el valor máximo de la escala de colores.
+
