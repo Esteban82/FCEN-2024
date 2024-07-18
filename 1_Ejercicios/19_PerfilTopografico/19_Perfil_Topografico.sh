@@ -24,10 +24,12 @@ clear
 #	Base de datos de GRILLAS
 	DEM=@earth_relief_$RES
 
+	PERFIL=tmp_perfil.txt
+
 #	0. Crear perfil
 #	-----------------------------------------------------------------------------------------------------------
 #	Datos de Longitud y Latitud
-	cat > tmp_line <<- END
+	cat > tmp_line.txt <<- END
 	#Long Lat
 	-76 -32
 	-46 -32
@@ -37,24 +39,24 @@ clear
 #	Calcular Distancia a lo largo de la linea y agregar datos geofisicos
 #	-----------------------------------------------------------------------------------------------------------
 #	1A. Interpolar: agrega datos en el perfil (-I).
-#	gmt sample1d tmp_line -I0.2k > tmp_sample1d -fg		# Datos cada 0,2 km
-	gmt sample1d tmp_line -I$RES > tmp_sample1d -fg		# Datos segun Resolucion
+#	gmt sample1d tmp_line.txt -I0.2k > tmp_sample1d.txt -fg		# Datos cada 0,2 km
+	gmt sample1d tmp_line.txt -I$RES > tmp_sample1d.txt -fg		# Datos segun Resolucion
 
 #	1B. Agrega columna (3a) con distancia del perfil en km (-G+uk)
-	gmt mapproject tmp_sample1d -G+uk > tmp_track
+	gmt mapproject tmp_sample1d.txt -G+uk > tmp_track.txt
 
 #	1C. Agregar datos de altura al perfil:
 #	1C1. Crear variable con region geografica del perfil
-	REGION=$(gmt info tmp_sample1d -I+e0.1)
+	REGION=$(gmt info tmp_sample1d.txt -I+e0.1)
 	echo $REGION
 
 #	1C2. Agrega columna (4) con datos extraidos de la grilla -G (altura) sobre el perfil
-	gmt grdtrack tmp_track -G$DEM $REGION > tmp_data
+	gmt grdtrack tmp_track.txt -G$DEM $REGION > $PERFIL
 
 #	Auxiliar: Mapa de ubicacion del perfil
 gmt begin mapa png
 	gmt grdimage $REGION @earth_relief -JM15c -Baf
-	gmt plot tmp_line -Wred
+	gmt plot $PERFIL -Wred
 gmt end
 
 #	2. Hacer Grafico y dibujar perfil
@@ -62,14 +64,14 @@ gmt end
 gmt begin $title png
 
 #	Informacion para crear el grafico. 3a Columna datos en km. 4a Columna datos de Topografia.
-	gmt info tmp_data
+	gmt info $PERFIL
 
 #   Definir dominio de los datos para el perfil
     D=e         # Dominio exacto de los datos
 #   D=a         # Dominio automatico (con valores redondeados ligeramente mayores)
 
 #	Dibujar datos de columnas 3a y 4a (-i2,3)
-	gmt plot tmp_data -JX$L/$H -R$D -W0.5,blue -i2,3  
+	gmt plot $PERFIL -JX$L/$H -R$D -W0.5,blue -i2,3  
 
 #	Dibujar Eje X (Sn)
 	gmt basemap -BSn -Bxaf+l"Distancia (km)"
