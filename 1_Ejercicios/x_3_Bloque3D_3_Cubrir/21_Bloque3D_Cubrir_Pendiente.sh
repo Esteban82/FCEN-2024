@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 clear
 
-# Proxy de la FCEN (direccion de proxy:numero de puerto).
-# Descomentar si se esta en FCEN
-export http_proxy="http://proxy.fcen.uba.ar:8080"
-
 #	Temas a ver:
 #	1. Cubrir bloque 3D con otra grilla/imagen.
 #	2. Agregar escala al bloque. 
