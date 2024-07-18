@@ -7,7 +7,7 @@ clear
 #	Definir Variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
-	title=20_Bloque3D_2_DatosCulturales
+	title=22_Bloque3D_3_DatosCulturales
 	title=$(basename $0 .sh)
 	echo $title
 
