@@ -23,7 +23,7 @@ clear
 	PROZ=4c
 	p=160/30
 
-#	Grilla 
+#	Datos
 #	GRD=@earth_relief_01m
 	GRD=@earth_relief_30s_p
 
@@ -65,18 +65,19 @@ gmt begin $title png
 
 #	Convertir modulo del gradiente a inclinacion (pendiente) en grados(ATAND).
 	gmt grdmath $PENDIENTE ATAND = $PENDIENTE
+
 #	---------------------------------------------
 
 #	Crear Paleta de Color para PENDIENTES
-#	gmt makecpt -Crainbow -T0/30 -I -Di
+	gmt makecpt -Crainbow -T0/30 -I -Di
 
 #	Dibujar Figura
 #	--------------------------------------------------------------------------------------------------------
 #	Bloque 3D
-	gmt grdview $RELIEVE -R$REGION3D -J$PROJ -JZ$PROZ -p$p -I -C -Qi300 -N$BASE+glightgray -Wf0.5 \
-   -BnSwEZ+b -Baf -Bzaf+l"Altura (m)"
-#    gmt grdview $RELIEVE -R$REGION3D -J$PROJ -JZ$PROZ -p$p -I -C -Qi300 -N$BASE+glightgray -Wf0.5 \
-#    -BnSwEZ -Baf -Bzaf+l"Altura (m)" -G$CUT2
+#	gmt grdview $RELIEVE -R$REGION3D -J$PROJ -JZ$PROZ -p$p -I -C -Qi300 -N$BASE+glightgray -Wf0.5 \
+#   -BnSwEZ+b -Baf -Bzaf+l"Altura (m)"
+    gmt grdview $RELIEVE -R$REGION3D -J$PROJ -JZ$PROZ -p$p -I -C -Qi300 -N$BASE+glightgray -Wf0.5 \
+    -BnSwEZ -Baf -Bzaf+l"Altura (m)" -G$PENDIENTE
 
 #	Dibujar datos culturales en bloque 3D
 #	-----------------------------------------------------------------------------------------------------------
@@ -84,12 +85,6 @@ gmt begin $title png
 	gmt coast -p$p/0 -Da -Sdodgerblue2 -A0/0/1 
 	gmt coast -p$p/0 -Da -W1/0.3,black 
 	
-#	Dibujar datos de coast en 3D
-	gmt coast -R$REGION -Df -M -N1/ | gmt grdtrack -G$RELIEVE -sa | gmt plot3d -R$REGION3D -p$p -W0.5,black 
-	gmt coast -R$REGION -Df -M -N2/ | gmt grdtrack -G$RELIEVE -sa | gmt plot3d -R$REGION3D -p$p -W0.2,black,-
-
-#	Dibujar Escala en el mapa centrado en -Lg Lon0/Lat0, calculado en meridiano (+c), 
-	gmt basemap -Ln0.88/0.075+c+w100k+f+l -p$p/0
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Cerrar el archivo de salida (ps)
