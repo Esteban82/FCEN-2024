@@ -44,9 +44,9 @@ gmt begin $title png
 #	Datos Tectonicos
 #	-----------------------------------------------------------------------------------------------------------
 #	Plates Project: Limite de Placas
-	gmt plot "Datos/transform.gmt" -A -W0.4,black -Sf2.0c/0.25+l+s -Gblack
-	gmt plot "Datos/trench.gmt"    -A -W0.4,green -Sf0.6c/0.15+l+t -Ggreen
-	gmt plot "Datos/ridge.gmt"     -A -W1.0,red
+	gmt plot "Datos/transform.gmt" -A -W0.4,black -Sf2.0c/0.25+l+s -Gblack -l"Falla transforme"
+	gmt plot "Datos/trench.gmt"    -A -W0.4,green -Sf0.6c/0.15+l+t -Ggreen -l"Trinchera"
+	gmt plot "Datos/ridge.gmt"     -A -W1.0,red -l"Dorsal"
 	gmt plot "Datos/ridge.gmt"     -A -W0.4,white
 
 #	Plates Project: LIPs. Dibujar patrones
