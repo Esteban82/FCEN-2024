@@ -2,7 +2,7 @@
 clear
 
 #	Temas a ver
-#	1. Recorte irregular de una grilla
+#	1. Recorte irregular de una grilla (con una máscara)
 
 #	Definir variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
@@ -16,18 +16,14 @@ clear
 #	Proyeccion Mercator (M)
 	PROJ=M15c
 
-#	Resolucion de la grilla
-	RES=15s
-	RES=02m
-
-#	Base de datos de GRILLAS
-	DEM=@earth_relief_$RES
+#	Grilla
+	DEM=@earth_relief
 
 # 	Nombre archivo de salida
-	CUT=tmp_$title.nc
-	CUT1=tmp_$title-1.nc
-	MASK=tmp_$title-2.nc
-	CLIP=tmp_clip.txt
+	CUT0=tmp_$title.nc
+	CUT1=tmp_${title}_1.nc
+	MASCARA=tmp_${title}_mascara.nc
+	POLIGONO=tmp_poligono.txt
 
 #	Parametros Generales
 #	-----------------------------------------------------------------------------------------------------------
@@ -52,25 +48,25 @@ gmt begin $title png
 #	Crear grilla
 #	-------------------------------------------------------------
 #	Recortar la grilla (rectangular)
-	gmt grdcut $DEM -G$CUT1 -R$REGION
+	gmt grdcut $DEM -G$CUT1 -R$REGION -J$PROJ
 
-#	Crear/Definir poligono irregular
-	cat Cuenca_Parana.txt > $CLIP
+#	Crear/Definir poligono irregular para la máscara
+	cat Cuenca_Parana.txt > $POLIGONO
 #	gmt coast -M > $CLIP -EPY
 #	gmt coast -M > $CLIP -EAR.A,AR.Y
 #	gmt grdcontour $CUT1  -C+3000 -D$CLIP
 
 #	Crear Mascara con valores dentro del poligono (-Nfuera/borde/dentro)
-	gmt grdmask -R$CUT1 $CLIP -G$MASK -NNaN/NaN/1
-#	gmt grdmask -R$CUT1 $CLIP -G$MASK -N1/NaN/NaN
+	gmt grdmask -R$CUT1 $POLIGONO -G$MASCARA -NNaN/NaN/1
+	gmt grdmask -R$CUT1 $POLIGONO -G$MASCARA -N1/NaN/NaN
 
 #	Recortar 
-	gmt grdmath $CUT1 $MASK MUL = $CUT
+	gmt grdmath $CUT1 $MASCARA MUL = $CUT
 
 #	Crear Mapa
 #	-------------------------------------------------------------
 #	Crear Imagen a partir de grilla con sombreado y cpt. -Q: Nodos sin datos sin color 
-	gmt grdimage $CUT -I -Q
+	gmt grdimage $CUT -I
 #	gmt grdimage $CUT -I -Q -Cdem4
 
 #	Agregar escala de colores a partir de CPT (-C). Posición (x,y) +wlargo/ancho. Anotaciones (-Ba). Leyenda (+l). 
