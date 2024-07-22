@@ -1,13 +1,19 @@
 #!/bin/bash
 clear
 
+# Descomentar si se esta en FCEN
+export http_proxy="http://proxy.fcen.uba.ar:8080"
+gmt set GMT_DATA_SERVER Brasil
+
+
 #	Temas a ver:
 #	1. Resamplear grilla (resolución vs espaciado horizontal)
 
 #	Define map
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
-	title=45_AireLibre_Dem
+	#title=29_AireLibre_Dem
+	title=$(basename $0 .sh)
 	echo $title
 
 #	Region: Sudamerica y Atlantico Sur
@@ -51,12 +57,14 @@ gmt begin $title png
 #	Recortar grilla
 	gmt grdcut $GRD -R$REGION -G$CUT
 	
-#	Resamplear grilla para que tenga la misma resolucion que el DEM
-	gmt grdsample tmp_grd -G$CUT -I15s		# Grillas con mismo registro
-#	gmt grdsample tmp_grd -G$CUT -I15s -T   # Grillas con distinto registro
+#	Resamplear grilla para que tenga la misma resolucion que el DEM de mayor resolucion
+#	---------------------------------------------------------------------------
+	gmt grdsample $CUT -G$CUT -I15s	   	# Grillas con mismo registro
+#	gmt grdsample $CUT -G$CUT -I15s -T  # Grillas con distinto registro
+#	---------------------------------------------------------------------------
 
-#	Ver informacion. Comparar valores para ver si las grillas coinciden. 	
-	gmt grdinfo $SHADOW -C
+#	Ver informacion. Comparar valores para ver si las grillas coinciden.
+#	gmt grdinfo $SHADOW -C
 	gmt grdinfo $SHADOW -Cn -o0,1,2,3,6,7,8,9
 	gmt grdinfo $CUT 	-Cn -o0,1,2,3,6,7,8,9
 
