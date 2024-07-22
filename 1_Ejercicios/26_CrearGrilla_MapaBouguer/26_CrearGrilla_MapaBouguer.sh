@@ -78,7 +78,7 @@ clear
 gmt end
 
 # Borrar archivos temporales
-rm tmp_* gmt.conf
+rm tmp_* gmt.conf -f
 
 #	Ejercicios sugeridos
 #	1. Ver las distintas opciones de grd2cpt para crear un CPT.
