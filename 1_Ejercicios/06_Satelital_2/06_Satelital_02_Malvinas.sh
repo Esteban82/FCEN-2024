@@ -39,9 +39,9 @@ clear
 	gmt set FORMAT_GEO_MAP ddd:mm:ssF
 
 #	Sub-seccion MAPA
-#	gmt set MAP_FRAME_TYPE inside
+	gmt set MAP_FRAME_TYPE inside
 #	gmt set MAP_FRAME_TYPE fancy+
-	gmt set MAP_FRAME_TYPE fancy
+#	gmt set MAP_FRAME_TYPE fancy
 
 #	Dibujar mapa
 #	-----------------------------------------------------------------------------------------------------------
@@ -94,6 +94,9 @@ gmt begin $title png
 #	-----------------------------------------------------------------------------------------------------------
 #	Cerrar la sesion y mostrar archivo
 gmt end #show
+
+gdalwarp -s_srs +proj=merc $title Malvinas.tiff
+
 
 rm gmt.conf
 

@@ -12,7 +12,6 @@
 
 #	Region Geografica
 	REGION=-79/-20/-63/-50
-	#REGION=IN	# India 
 
 #	Proyeccion Cilindrica: (M)ercator
 	PROJ=M15c
@@ -34,11 +33,11 @@ gmt begin $title png
 #	Setear la region y proyeccion
 	gmt basemap -R$REGION -J$PROJ -B+n
 
-#	Pintar areas humedas: Oceanos (-S) y Lagos (-Cl/)f
+#	Pintar areas humedas
 	color=dodgerblue2
 	gmt coast -Da -S$color
 
-#	Dibujar Linea de Costa (level/, where level is 1-4 and represent coastline, lakeshore, /island-in-lake shore, and lake-in-island-in-lake shore)
+#	Dibujar Linea de Costa
 	gmt coast -Da -W1/faint
 
 #	Datos Tectonicos
@@ -116,22 +115,22 @@ gmt begin $title png
 	END
 
 #	Graficar leyenda
-	gmt legend tmp_leyenda -DJBC+o0/0.2c+w15c/0c    -F+p+i+r
+	gmt legend tmp_leyenda.txt -DJBC+o0/0.2c+w15c/0c    -F+p+i+r
 
 #	-----------------------------------------------------------------------------------------------------------
 #   Leyenda Auxiliar
-	cat > tmp_leyenda <<- END
+	cat > tmp_leyenda_aux.txt <<- END
 	H 10 Times-Roman 
 	N 3
 	S 0.25c - 0.5c - 1.0p,white 0.75c
 	END
-	gmt legend tmp_leyenda -DJBC+o0/0.2c+w15c/0c
+	gmt legend tmp_leyenda_aux.txt -DJBC+o0/0.2c+w15c/0c
 #	-------------------------------------------------
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Mapa de Ubicacion (INSET)
 #	Crear archivo con recuadro de zona de estudio
-	gmt basemap -A > tmp_area
+	gmt basemap -A > tmp_area.txt
 
 #	Extraer coordenadas del centro del mapa	(CM) y crear variables
 	gmt mapproject -WjCM 
@@ -147,7 +146,7 @@ gmt begin $title png
 #	gmt inset begin -DjTR+w3.0c+o-0.3c
 		gmt coast -Rg -JG$Lon/$Lat/? -Gwhite -Slightblue3 -C- -Bg
 		gmt coast -W1/faint -N1
-		gmt plot tmp_area -Wthin,darkred
+		gmt plot tmp_area.txt -Wthin,darkred
 		echo $Lon $Lat | gmt plot -Sa0.1c -Gred
 	gmt inset end
 
@@ -166,5 +165,5 @@ gmt end
 
 
 #	Links de interes
-#	https://docs.generic-mapping-tools.org/6.2/gallery/ex22.html#example-22
-#	https://docs.generic-mapping-tools.org/6.2/legend.html#examples
+#	https://docs.generic-mapping-tools.org/6.5/gallery/ex22.html#example-22
+#	https://docs.generic-mapping-tools.org/6.5/legend.html#examples

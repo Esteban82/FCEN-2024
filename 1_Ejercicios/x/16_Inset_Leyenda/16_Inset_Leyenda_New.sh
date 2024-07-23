@@ -8,6 +8,7 @@
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
 	title=16_Inset_Leyenda
+	title=$(basename $0 .sh)
 	echo $title
 
 #	Region Geografica
@@ -67,6 +68,7 @@ gmt begin $title png
 #	gmt plot "Sismos/USGS.txt"  -W0.1 -Gred -Sc0.1c		# Tamaño y color fijo 
 #	gmt plot "Sismos/USGS.txt"  -W0.1 -C    -Sc0.1c    	# Color variable (3 columna) y tamaño fijo
 	gmt plot "Sismos/USGS.txt"  -W0.1 -C 	-Scp		# Color (3a col) y tamaño (4a col) variable 
+	gmt plot "Sismos/USGS.txt"  -W0.1 -C 	-Scp		# Color (3a col) y tamaño (4a col) variable 
 
 #	Convertir tabla de datos 	
 #	gmt convert query.csv -h1 -i2,1,3,4 > Sismos.txt
@@ -89,6 +91,8 @@ gmt begin $title png
 
 #	Dibujar frame (-B): Anotaciones (a), frame (f), grilla (g)
 	gmt basemap -Bxaf -Byaf
+
+#	gmt legend -DJBC+o0/0.2c+w15c/0c    -F+p+i+r
 
 #	Dibujar leyenda
 #	-----------------------------------------------------------------------------------------------------------
@@ -116,7 +120,8 @@ gmt begin $title png
 	END
 
 #	Graficar leyenda
-	gmt legend tmp_leyenda -DJBC+o0/0.2c+w15c/0c    -F+p+i+r
+#	gmt legend tmp_leyenda -DJBC+o0/0.2c+w15c/0c    -F+p+i+r
+
 
 #	-----------------------------------------------------------------------------------------------------------
 #   Leyenda Auxiliar

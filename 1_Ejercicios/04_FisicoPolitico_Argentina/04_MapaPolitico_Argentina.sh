@@ -78,6 +78,7 @@ gmt begin $title png
 
 #	Dibujar frame
 	gmt basemap -Baf
+	gdalwarp -s_srs +proj=merc cara.tif carageo.tiff
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Cerrar la sesion y mostrar archivo

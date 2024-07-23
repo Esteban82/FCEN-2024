@@ -1,0 +1,3 @@
+basemap [ERROR]: Unrecognized option -o
+basemap [ERROR]: Module does not expect input files
+basemap [ERROR]: 1:.* was seen as an input file which is not expected by this module
