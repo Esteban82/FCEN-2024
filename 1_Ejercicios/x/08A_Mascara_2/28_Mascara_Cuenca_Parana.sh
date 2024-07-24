@@ -1,13 +1,17 @@
 #!/bin/bash
 clear
 
+export http_proxy="http://proxy.fcen.uba.ar:8080"
+gmt set GMT_DATA_SERVER Brasil
+
 #	Temas a ver
 #	1. Agregar imagen satelital o dem debajo del recorte.
 
 #	Definir variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
-	title=28_Mascara_Cuenca_Parana
+	#title=28_Mascara_Cuenca_Parana
+	title=$(basename $0 .sh)
 	echo $title
 
 #	Region: Argentina
@@ -71,13 +75,14 @@ gmt begin $title png
 	gmt grdmask -R$CUT1 $CLIP -G$MASK -NNaN/NaN/1
 #	gmt grdmask -R$CUT1 $CLIP -G$MASK -N1/NaN/NaN
 
-#	Recortar 
+#	Recortar (multiplicar DEM y Mascara)
 	gmt grdmath $CUT1 $MASK MUL = $CUT
 
 #	Crear Mapa
 #	-------------------------------------------------------------
 #	Crear Imagen a partir de grilla con sombreado y cpt. -Q: Nodos sin datos sin color 
-	gmt grdimage $CUT -I -Q -Cdem4
+	#gmt grdimage $CUT -I -Q -Cdem4
+	gmt grdimage $CUT -I -Cdem4
 
 #	Agregar escala de colores a partir de CPT (-C). Posición (x,y) +wlargo/ancho. Anotaciones (-Ba). Leyenda (+l). 
 	gmt colorbar -C -I -DJRM+o0.3c/0+w14/0.618c  -Ba+l"Alturas (km)" -W0.001

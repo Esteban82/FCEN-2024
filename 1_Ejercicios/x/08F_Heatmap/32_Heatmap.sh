@@ -1,7 +1,6 @@
 #!/bin/bash
 clear
 
-
 #	Temas a ver:
 #	1. Agrupar datos
 #	2. Crear heatmap a partir de datos de sismos.
