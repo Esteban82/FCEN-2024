@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 clear
 
-# Adapto de GMT EXAMPLE 16
+# Adaptado de GMT EXAMPLE 16
 # 	Temas a ver: 
 #	1. Grillar datos 
 #	2. Hacer subgraficos
