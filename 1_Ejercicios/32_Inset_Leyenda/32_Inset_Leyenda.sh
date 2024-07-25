@@ -7,7 +7,8 @@
 #	Definir variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
-	title=16_Inset_Leyenda
+	title=32_Inset_Leyenda
+	title=$(basename $0 .sh)
 	echo $title
 
 #	Region Geografica
@@ -59,7 +60,7 @@ gmt begin $title png
 #	gmt makecpt -Cred,green,blue,black -T0,100,300,600,1000
 	gmt makecpt -Cred,green,blue -T0,100,300,700
 #	gmt makecpt -Crainbow -T0/700
-#	gmt colorbar -DjBL+o0.2c+w-3c/0.5c
+	gmt colorbar -DjBL+o0.2c+w3c/0.2c+r
 
 #	Dibujar Sismos del USGS segun magnitud (-Scp), y color segun profundidad (-C). 
 #	-Scp: El tamaño del circulo corresponde a la magnitud medida en puntos tipograficos. 
@@ -84,7 +85,7 @@ gmt begin $title png
 	
 #	-----------------------------------------------------------------------------------------------------------
 #	Dibujar Escala en el mapa centrado en -Lg Lon0/Lat0, calculado en meridiano (+c), ancho (+w), elegante(+f), unidad arriba de escala (+l), unidad con los valores (+u)
-	gmt basemap -Ln0.1/0.2+c+w500k+f+l
+#	gmt basemap -Ln0.1/0.2+c+w500k+f+l
 
 #	Dibujar frame (-B): Anotaciones (a), frame (f), grilla (g)
 	gmt basemap -Bxaf -Byaf
@@ -93,15 +94,15 @@ gmt begin $title png
 #	-----------------------------------------------------------------------------------------------------------
 #	Crear archivo para hacer la leyenda
 #	Leyenda. H: Encabezado. D: Linea horizontal. N: # columnas verticales. V: Linea Vertical. S: Símbolo. M: Escala
-	cat > tmp_leyenda <<- END
+	cat > tmp_leyenda.txt <<- END
 	H 10 Times-Roman Leyenda del Mapa
 	N 3
 	S 0.25c -     0.5c -     3.0p,red       0.75c Dorsal
 	S 0.25c f+l+t 0.5c green 1.0p,green     0.75c Subucci\363n
 	S 0.25c f+l+s 0.5c -     1p,black       0.75c L\355mite Transforme
 	G 0.075c
-#	S 0.25c c 0.25c red   0.40p     0.5c Sismos someros (0-100 km)
-	S 0.25c kmeca 0.25c red   0.40p     0.5c Sismos someros (0-100 km)
+	S 0.25c c 0.25c red   0.40p     0.5c Sismos someros (0-100 km)
+#	S 0.25c kmeca 0.25c red   0.40p     0.5c Sismos someros (0-100 km)
 	S 0.25c c 0.25c green 0.40p     0.5c Sismos intermedios (100-300 km)
 	S 0.25c c 0.25c blue  0.40p     0.5c Sismos profundos (300-700 km)
 	G 0.075c
