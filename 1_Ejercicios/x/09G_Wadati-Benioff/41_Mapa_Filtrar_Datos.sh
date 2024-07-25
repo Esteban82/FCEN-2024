@@ -13,7 +13,8 @@ clear
  
 #	Region Geografica y Proyeccion
 	REGION=AR.J				# Region de San Juan
-	REGION=-76/-61/-36/-28
+	REGION=AR.J+R3/1		# Region de San Juan
+	#REGION=-76/-61/-36/-28
 	PROJ=M15c
 
 #	Base de datos de GRILLAS
