@@ -6,7 +6,8 @@
 #	Variables del Mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo de la figura
-	title=Grafico_Dunlop2002
+	title=35_Grafico_Dunlop2002
+	title=$(basename $0 .sh)
 	echo $title
 
 #	Dominio de datos (eje X e Y)
