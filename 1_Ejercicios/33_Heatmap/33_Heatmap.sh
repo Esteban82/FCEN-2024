@@ -4,11 +4,13 @@ clear
 #	Temas a ver:
 #	1. Agrupar datos
 #	2. Crear heatmap a partir de datos de sismos.
+#	3. Graficar otra grilla encima.
 
 #	Definir variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
 	title=34_Heatmap
+	title=$(basename $0 .sh)
 	echo $title
  
 #	Region Geografica y proyección
@@ -22,10 +24,11 @@ clear
 #	res=50k
 
 #	Grilla mapa base
-	GRD=@earth_relief_01m
+	GRD=@earth_relief
+#	GRD=@earth_relief_05m 
 
 # 	Nombre archivo de salida
-	CUT=tmp_$title.nc
+	HEATGRID=tmp_heagrid.nc
 
 #	Parametros GMT
 #	-----------------------------------------------------------------------------------------------------------
@@ -71,28 +74,27 @@ gmt begin $title png
 	gmt blockmean tmp_LongLat.txt -Sn -C -I$res > tmp_Heatmap.xyz
 
 #	Crear grilla a partir de tabla de datos
-#	gmt xyz2grd tmp_Heatmap.xyz -I$res -GAscii.grd=ei
-	gmt xyz2grd tmp_Heatmap.xyz -I$res -G$CUT
+	gmt xyz2grd tmp_Heatmap.xyz -I$res -G$HEATGRID
 
 #	Analisis de datos
-	gmt grdinfo $CUT
-	gmt grdinfo $CUT -T
-	gmt grdinfo $CUT -T+a1
-	gmt grdinfo $CUT -T+a2.5
-	gmt grdinfo $CUT -T+a5
+	gmt grdinfo $HEATGRID
+	gmt grdinfo $HEATGRID -T
+	gmt grdinfo $HEATGRID -T+a1
+	gmt grdinfo $HEATGRID -T+a2.5
+	gmt grdinfo $HEATGRID -T+a5
 
 #	Crear Variable para CPT
-	T=$(gmt grdinfo $CUT -T+a5)
+#	T=$(gmt grdinfo $HEATGRID -T+a5)
 
 #	Crear CPT. Paleta Maestra (-C).
-	gmt makecpt -Chot -Di $T
+	gmt makecpt -Chot -Di $(gmt grdinfo $HEATGRID -T+a5)
 
 #	Crear Imagen a partir de grilla con sombreado y cpt
-#	gmt grdimage $CUT -C
-#	gmt grdimage $CUT -C       -t50
-#	gmt grdimage $CUT -C -Q 
-#	gmt grdimage $CUT -C -Q    -t50
-	gmt grdimage $CUT -C -Q -I -t50 
+#	gmt grdimage $HEATGRID -C
+#	gmt grdimage $HEATGRID -C       -t50
+#	gmt grdimage $HEATGRID -C -Q 
+#	gmt grdimage $HEATGRID -C -Q    -t50
+	gmt grdimage $HEATGRID -C -Q -t50 
 
 #	Agregar escala de colores a partir de CPT (-C). Posicion (x,y) +wlargo/ancho. Anotaciones (-Ba). Leyenda (+l). 
 	gmt colorbar -C -DjRT+o1.7c/0.7+w9/0.618c+ef -Baf+l"Cantidad de Sismos cada 100 km@+2@+"  -F+gwhite+p+i+s
