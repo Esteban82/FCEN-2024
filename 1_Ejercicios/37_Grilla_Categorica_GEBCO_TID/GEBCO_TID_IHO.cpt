@@ -1,0 +1,22 @@
+# Categorical CPT for Type Identifier (TID) for GEBCO_TID 2023. 
+# Colours from https://www.ncei.noaa.gov/maps/iho_dcdb/ (except for codes 0, 45 and 46)
+# Made by Esteban F. 
+0	white		L	;Land
+10	255/136/76	L	;Singlebeam
+11	100/207/79	L	;Multibeam
+12	217/136/83	L	;Seismic
+13	211/235/217	L	;Isolated sounding
+14	138/87/251	L	;ENC Sounding
+15	187/93/126	L	;Lidar
+16	114/131/90	L	;Depth measured by optical light sensor
+17	228/217/93	L	;Combination of direct measurement methods
+40	201/201/201	L	;Predicted based on satellite-derived gravity data
+41	149/149/149	L	;Interpolated (computer algorithm/GMT)
+42	246/192/230	L	;Digitized contour
+43	206/125/143	L	;Contours from ENC
+44	200/162/140	L	;Bathymetric sounding within gridded dataset
+45	211/131/165	L	;Aerial Grav
+46	193/199/243	L	;Iceberg Draft
+70	150/226/162	L	;Pre-generated grid
+71	95/79/171	L	;Unknown source
+72	86/171/150	B	;Steering point
