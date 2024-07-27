@@ -24,7 +24,6 @@
 #	Parametros GMT
 	gmt set FONT_ANNOT_PRIMARY 8p,Helvetica,Black
 
-
 #	Inicio
 #	---------------------------------------------------------------------------
 #	Iniciar sesion y tipo de figura
@@ -33,14 +32,16 @@ gmt begin $title png
 #	Setear Proyección y region
 	gmt basemap -R$REGION -J$PROJ -B+n
 
-#	Dibujar Grilla categórica
+#	Dibujar Grilla categórica (-nn: Interpolar usando nearest-neighbor)
 	gmt grdimage $TID -C${CPT} -nn+a
-
-#	Dibujar colorbar catetórigo	
-	gmt colorbar -DJLR+o0.5c/0c+w-90%/0.6c -L0.1 
 
 #	Agregar curva de nivel de -200 m
 	gmt grdcontour @earth_relief -C-200, -Wblue
+
+#	Dibujar elementos FUERA del mapa
+#	***************************************************************************
+#	Dibujar colorbar catetórigo	
+	gmt colorbar -DJLR+o0.5c/0c+w-90%/0.6c -L0.1 
 
 #	Dibujar marco del mapa
 	gmt basemap -Baf
