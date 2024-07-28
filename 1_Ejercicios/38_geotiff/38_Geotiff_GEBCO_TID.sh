@@ -43,6 +43,7 @@ gmt begin $title png
 #	1. Geotiff. 
 #	gmt psconvert -A -Tt -Ftif
 	gmt psconvert -A -Tt -FGeotiff_x1 -W+g
+	gmt psconvert -A -Tt -FTiff_x1_q1 -W+g -Qt1
 
 #	2. KML
 	gmt psconvert -FKML -Tg -W+k
