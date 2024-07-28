@@ -45,7 +45,7 @@ gmt begin $title png
 	ESCALA=$(grep -oP 1:.* tmp_escala.txt | sed 's/.$//' )
 #	ESCALA=1:1.88e+06
 
-#	Información del tamaño de la figura (ancho y alto en cm):
+#	Ver ancho y alto (en cm) de la figura (para comprobar):
 #	gmt mapproject -W
 
 #	Agregar anotaciones de coordenadas planas en ejes W y S
