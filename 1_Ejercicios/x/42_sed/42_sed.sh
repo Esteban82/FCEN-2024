@@ -96,10 +96,9 @@ END
 echo "Esta es una     línea con espacios.    ">  espacios.txt
 echo "    Otra  línea   con   más espacios. ">> espacios.txt
 
-# 
-#sed "s/ \{1,\}/ /g" espacios.txt
-
+# Mostrar archivo en terminal
 cat espacios.txt
+
 # C. Elimina los espacios en blanco al inicio de cada línea.
 #sed 's/^ *//' espacios.txt
 
@@ -110,7 +109,7 @@ cat espacios.txt
 #sed 's/ \{1,\}/ /g' espacios.txt
 
 # F. Combina las 3 opciones anteriores
-sed 's/^ *//;s/ *$//;s/ \{1,\}/ /g' espacios.txt > espacios2.txt
+#sed 's/^ *//;s/ *$//;s/ \{1,\}/ /g' espacios.txt > espacios2.txt
 
 # Borrar arhivos
  rm -f coordenadas.txt $ARCHIVO espacios*.txt
