@@ -2,12 +2,17 @@
 
 # Usar graphicsmagick
 # ---------------------------------------------------------------------
+
 # 1. Rotar una imagen 
+# --------------------------------------------
+
 # Sintaxis basica para un unico archivo
 gm convert fotos/Snap-400.jpg -rotate 90 Snap-400_rotada.jpg
 
 
 # 2. Rotar todas las imagenes en un directorio
+# --------------------------------------------
+# A. Parametros
 # Directorio donde están las imágenes
 DIR="fotos"
 
@@ -17,8 +22,10 @@ ANGULO=90
 # Extensión de las imágenes (ej. jpg, png)
 EXT="jpg"
 
+# B. Procesamiento
 # Recorrer cada archivo en el directorio con la extensión especificada
 for FOTO in "$DIR"/*."$EXT"; do
+
     # Obtener el nombre base del archivo sin la extensión
     NOMBRE=$(basename $FOTO .$EXT)
 
@@ -29,3 +36,6 @@ for FOTO in "$DIR"/*."$EXT"; do
     echo "Rotando $FOTO"
     gm convert "$FOTO" -rotate "$ANGULO" "$DIR/${NUEVO_NOMBRE}"
 done
+
+# Borrar archivos creados
+rm fotos/*_rotada.*
