@@ -97,7 +97,7 @@ echo "Esta es una     línea con espacios.    ">  espacios.txt
 echo "    Otra  línea   con   más espacios. ">> espacios.txt
 
 # Mostrar archivo en terminal
-cat espacios.txt
+#cat espacios.txt
 
 # C. Elimina los espacios en blanco al inicio de cada línea.
 #sed 's/^ *//' espacios.txt
