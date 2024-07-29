@@ -3,8 +3,8 @@
 # Script adaptado del GMT Example 28.
 #
 # Temas a ver:
-# 1. Trabajar con grillas/imagen en coordenadas planas (UTM)
-#
+# 1. Hacer mapa definiendo el ancho.
+# 2. Extraer información de la escala del mapa (con grep) para usarlo
 
 #	Definir variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
@@ -12,7 +12,8 @@
 	title=$(basename $0 .sh)
 	
 #	Datos (geotiff exportado en UTM 21 sur)
-	IMG=Malvinas_UTM.tif
+	#IMG=Malvinas_UTM.tif
+	IMG=../30_Satelital_UTM/Malvinas_UTM.tif
 
 #	Setear ancho de la figura (alto = 0 para mantener proporcion original).
 	ANCHO=10c/0
@@ -21,7 +22,7 @@
 #	---------------------------------------------------------------------------
 #	gmt grdinfo $IMG
 
-	# Defino variable con proyección de la imagen 
+	# Defino variable con proyección de la imagen SEGUN la informacion de la imagen
 	PROJ=u-21
 
 #	Dibujar mapa
@@ -36,13 +37,13 @@ gmt begin $title png
 
 #	Ver información para extraer escala
 	# 1. Guardar estandar error en archivo
-	gmt basemap -B+n -Vi 2> tmp_escala.txt 
-	# 2. Obtener texte que empiece con "1:"
+	gmt basemap -B+n -Vi 2> escala.txt 
+	# 2. Obtener texto que empiece con "1:"
 	#grep -oP 1:.* escala.txt
 	# 3. Borrar punto final	
-	#grep -oP 1:.* escala.txt | sed 's/.$//'
+#	grep -oP 1:.* escala.txt | sed 's/.$//'
 	# 4. Guardar resultado en una variable
-	ESCALA=$(grep -oP 1:.* tmp_escala.txt | sed 's/.$//' )
+	ESCALA=$(grep -oP 1:.* escala.txt | sed 's/.$//' )
 #	ESCALA=1:1.88e+06
 
 #	Ver ancho y alto (en cm) de la figura (para comprobar):
@@ -61,6 +62,8 @@ gmt begin $title png
 
 gmt end
 
+# Borrar archivo temporal
+rm escala.txt -f
 # Ejercicios sugeridos
 # 1. Cambiar la escala del mapa.
 # 2. Usar otra imagen satelital.

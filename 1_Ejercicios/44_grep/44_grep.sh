@@ -51,11 +51,11 @@ rm $ARCHIVO -f
 ARCHIVO=../43_awk/e250K.DepositMetalif.csv 
 
 # 1. Buscar registros que contengan el texto:
-grep "04c Cu-Au" $ARCHIVO
+#grep "04c Cu-Au" $ARCHIVO
 
 # 2. Contar la cantidad de depositos:
-echo Contar la cantidad de depositos:
-grep "04c Cu-Au" $ARCHIVO -c
+#echo Contar la cantidad de depositos:
+#grep "04c Cu-Au" $ARCHIVO -c
 
 
 # Fuente 
