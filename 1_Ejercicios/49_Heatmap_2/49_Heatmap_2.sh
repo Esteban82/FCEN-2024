@@ -10,11 +10,15 @@ clear
 	REGION=-74/-64/-36/-28
 	PROJ=M15c
 
+#	Grilla mapa base
+	GRD=@earth_relief
+#	GRD=@earth_relief_05m 
+
 #   Resolucion de la grilla de densidades (heatmap)
 	res=10k
 
 #	Datos
-	DATOS=
+	DATOS=../33_Heatmap/Datos/query_*
 
 # 	Nombre archivo de salida
 	HEATGRID=tmp_heatgrid.nc
@@ -29,6 +33,26 @@ clear
 
 #	Sub-seccion COLOR
 	gmt set COLOR_NAN white
+
+#	***********************************************************************
+#	Procesar Sismos
+#	-----------------------------------------------------------------------------------------------------------
+#	Combinar archivos con datos de sismicidad en un unico archivo.
+	cat $DATOS > tmp_sismos.txt
+
+#	Extraer datos de Longitud y Latitud. -s: no escribe datos con NaN
+	gmt convert tmp_sismos.txt -i2,1 -hi1 -s > tmp_LongLat.txt
+
+#	Crear grilla con binstat
+#	-fg: Datos en Long-Lat
+#	-I: Resolucion de la grilla de salida
+#	-G: Grilla de salida
+#	-Cn: Contar cantidad de datos en el area de busqueda
+#	-S: radio del círculo del area de busqueda
+	gmt binstats tmp_LongLat.txt -fg -R$REGION -G$HEATGRID -I1m -S50k -Cn -Vi
+#	gmt binstats tmp_LongLat.txt -fg -R$REGION -G$HEATGRID -I1k -S50k -Cn -Vi
+#	gmt binstats tmp_LongLat.txt -fg -R$REGION -G$HEATGRID -I20k -S4k -Cn -Vi
+#	gmt binstats tmp_LongLat.txt -fg -R$REGION -G$HEATGRID -I20k -S40k -Cn -Vi
 
 #	Dibujar mapa
 #	-----------------------------------------------------------------------------------------------------------
@@ -50,29 +74,6 @@ gmt begin $title png
 	gmt coast -N1/0.30 
 	gmt coast -N2/0.25,-.
 
-#	***********************************************************************
-#	Procesar Sismos
-#	-----------------------------------------------------------------------------------------------------------
-#	Combinar archivos con datos de sismicidad en un unico archivo.
-	cat Datos/query_* > tmp_sismos.txt
-
-#	Extraer datos de Longitud y Latitud. -s: no escribe datos con NaN
-	gmt convert tmp_sismos.txt -i2,1 -hi1 -s > LongLat.txt
-
-#	Crear grilla con binstat
-#	-fg: Datos en Long-Lat
-#	-I: Resolucion de la grilla de salida
-#	-G: Grilla de salida
-#	-Cn: Contar cantidad de datos en el area de busqueda
-#	-S: radio del círculo del area de busqueda
-#	gmt binstats tmp_LongLat.bin -fg -G$HEATGRID -bi1f,1f,1f -I1m -S50k -Cn -Vi
-	#gmt binstats LongLat_d.bin -fg -G$HEATGRID -bi -I1m -S50k -Cn -Vi
-	gmt binstats LongLat.txt   -fg -G$HEATGRID      -I1m -S50k -Cn -Vi
-#	gmt binstats tmp_LongLat.txt -fg -G$HEATGRID -I1k -S50k -Cn -Vi
-#	gmt binstats tmp_LongLat.txt -fg -G$HEATGRID -I20k -S4k -Cn -Vi
-#	gmt binstats tmp_LongLat.txt -fg -G$HEATGRID -I20k -S40k -Cn -Vi
-
-
 #	Crear Variable para CPT
 #	T=$(gmt grdinfo $HEATGRID -T+a5)
 
@@ -81,9 +82,9 @@ gmt begin $title png
 
 #	Crear Imagen a partir de grilla con sombreado y cpt
 #	gmt grdimage $HEATGRID -C
-#	gmt grdimage $HEATGRID -C       -t50
+#	gmt grdimage $HEATGRID -C    -t50
 #	gmt grdimage $HEATGRID -C -Q 
-#	gmt grdimage $HEATGRID -C -Q    -t50
+#	gmt grdimage $HEATGRID -C -Q -t50
 	gmt grdimage $HEATGRID -C -Q -t50 
 
 #	Agregar escala de colores a partir de CPT (-C). Posicion (x,y) +wlargo/ancho. Anotaciones (-Ba). Leyenda (+l). 
@@ -97,8 +98,8 @@ gmt begin $title png
 #	Cerrar el archivo de salida (ps)
 gmt end
 
-#	rm tmp_* gmt.*
+rm tmp_* gmt.*
 
 #	Ejercicios sugeridos
-#	1. Cambiar la resolución de la grilla de densidades (lineas 21-23).
-#	2. Cambiar region geografica del mapa.
+#	1. Cambiar los valores del incremento de la grilla (-I) para binstats.
+#	1. Cambiar los valores del área de búsqueda (-S) para binstats.

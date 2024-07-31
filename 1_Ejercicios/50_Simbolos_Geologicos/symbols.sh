@@ -6,7 +6,7 @@ userdir=$(gmt --show-userdir)
 echo $userdir/cache
 
 # Copiar arhivos .def a carpeta del usuario
-#cp geology/*.def $userdir/cache
+cp geology/*.def $userdir/cache
 
 gmt begin symbols png
 	echo 0 0 | gmt plot -R-1/6/-1/6 -JX15/15 -BWSen+t"Símbolos" -Ba+e -Ggreen -Sc0.75c
@@ -34,11 +34,11 @@ gmt begin symbols png
 	# Solo ubicacion
 	echo 3 5 | gmt plot -Skgeo-lineation_vert/3c -Gred
 
-	# Con 1 parametro (linemiento horizontal de azimuth 45º)
-	echo 4 5 85 | gmt plot -Skgeo-lineation_hor/2c -Gblack
+	# Con 1 parametro (lineamiento horizontal de azimuth 45º)
+	echo 4 5 10 | gmt plot -Skgeo-lineation_hor/2c -Gblack
 
 	# Con 2 parametros (azimut 45º e inclinacion 30º)
-	echo 5 5 45 30| gmt plot -Skgeo-foliation-2/2c -Gblack
+	echo 5 5 5 20 | gmt plot -Skgeo-foliation-2/2c -Gblack
 gmt end #show
 
 # *Links con mas informacion
