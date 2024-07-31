@@ -2,12 +2,12 @@
 clear
 
 #	Temas a ver:
-#	1. Dibujar datos culturales en bloque 3D
+#	1. Crear geotiff y superponerlos al bloque 3D
 
 #	Definir Variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
-	title=22_Bloque3D_3_DatosCulturales
+	title=46_Bloque3D_3_DatosCulturales
 	title=$(basename $0 .sh)
 	echo $title
 
@@ -29,16 +29,17 @@ clear
 #	GRD=@earth_relief_15s
 	GRD=@earth_relief_03s
 
+#	Datos IGN
+	DIR_IGN=../22_Bloque3D_3_DatosCulturales/IGN/
+
 # 	Nombre archivo de salida y Variables Temporales
 	CUT=tmp_$title.nc
+	GEOTIFF=Mapa
 
 #	Parametros Generales
 #	-----------------------------------------------------------------------------------------------------------
 #	Sub-seccion FORMATO
 	gmt set FORMAT_GEO_MAP ddd:mm:ssF
-
-#	Sub-seccion GMT
-	gmt set GMT_VERBOSE w
 
 #	Dibujar mapa
 #	-----------------------------------------------------------------------------------------------------------
@@ -46,37 +47,39 @@ clear
 gmt begin $title png
 
 #	Setear region
-	gmt basemap -R$REGION -JX14c -B+n
+	gmt basemap -R$REGION -Jx4d -B+n
 
 #	Recortar Grilla
 	gmt grdcut $GRD -G$CUT -R$REGION
 
+	gmt grdinfo $CUT 
+
 #	Hace mapa
-	gmt grdimage $CUT -Cgeo
+	gmt grdimage $CUT -Cwhite
+	#gmt grdimage $IMG
 
 #	Dibujar datos IGN en 3D
-	gmt plot IGN/RedVial_Ruta_Provincial.gmt  -Wthin,red
+	gmt plot ${DIR_IGN}/RedVial_Ruta_Provincial.gmt  -Wthin,red
 
-	gmt psconvert -A -Tt -W+g -Fmapa -E600
+	gmt psconvert -A -Tt -W+g -F$GEOTIFF -Qg1 -E762
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Cerrar el archivo de salida (ps)
 gmt end
 
-#	Dibujar Bloque 3D
+# **********************************************************************************************************
+
+#	2. Dibujar Bloque 3D
 #	--------------------------------------------------------------------------------------------------------
 #	Iniciar sesion y tipo de figura
-#gmt begin $title png
+gmt begin $title png
 
-#	Bloque 3D. 
-	gmt grdview $CUT -R$REGION3D -J$PROJ -JZ$PROZ -p$p -I -Qi300 -N$BASE+glightgray -Wf0.5 \
-	-BnSwEZ+b -Baf -Bzaf+l"Altura (m)" -Gmapa.tif -png 3D_I300
-	
-	gmt grdview $CUT -R$REGION3D -J$PROJ -JZ$PROZ -p$p -I -Qc -N$BASE+glightgray -Wf0.5 \
-	-BnSwEZ+b -Baf -Bzaf+l"Altura (m)" -Gmapa.tif -png 3D_C
+#	Bloque 3D
+	gmt grdview $CUT -R$REGION3D -J$PROJ -JZ$PROZ -p$p -I -Qi -N$BASE+glightgray -Wf0.5 \
+	-BnSwEZ+b -Baf -Bzaf+l"Altura (m)" -G$GEOTIFF.tiff
 
 #	Cerrar el archivo de salida (ps)
-#gmt end
+gmt end
 
 #	Borrar archivos temporales
-	rm tmp_* gmt*
+	rm tmp_* gmt* $GEOTIFF.ti* 
