@@ -69,7 +69,7 @@ gmt end
 
 # **********************************************************************************************************
 
-#	2. Dibujar Bloque 3D
+#	2. Dibujar Bloque 3D con geotiff
 #	--------------------------------------------------------------------------------------------------------
 #	Iniciar sesion y tipo de figura
 gmt begin $title png
@@ -82,4 +82,4 @@ gmt begin $title png
 gmt end
 
 #	Borrar archivos temporales
-	rm tmp_* gmt* $GEOTIFF.ti* 
+	rm tmp_* gmt* $GEOTIFF.ti*
