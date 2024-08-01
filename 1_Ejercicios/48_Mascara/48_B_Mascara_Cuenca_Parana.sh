@@ -7,7 +7,7 @@ clear
 #	Definir variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
-	title=47_B_Mascara_Cuenca_Parana
+	title=48_B_Mascara_Cuenca_Parana
 	title=$(basename $0 .sh)
 	echo $title
 
@@ -71,14 +71,15 @@ gmt begin $title png
 
 #	Crear Mapa
 #	-------------------------------------------------------------
-#	gmt makecpt -Cdem4
+#	Crear CPT con NAN white
+	gmt makecpt -Cdem4 -M --COLOR_NAN=white
 
 #	Crear Imagen a partir de grilla con sombreado y cpt. -Q: Nodos sin datos sin color 
-	gmt grdimage $CUT -I    -Cdem4
-#	gmt grdimage $CUT -I -Q -Cdem4
+	gmt grdimage $CUT -I    -C
+#	gmt grdimage $CUT -I -Q -C
 
 #	Agregar escala de colores a partir de CPT (-C). Posición (x,y) +wlargo/ancho. Anotaciones (-Ba). Leyenda (+l). 
-#	gmt colorbar -Cdem4 -I -DJRM+o0.3c/0+w14/0.618c  -Ba+l"Alturas (km)" -W0.001
+	gmt colorbar -C -I -DJRM+o0.3c/0+w14/0.618c  -Ba+l"Alturas (km)" -W0.001
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Dibujar frame
