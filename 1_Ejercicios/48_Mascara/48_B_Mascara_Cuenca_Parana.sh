@@ -2,12 +2,13 @@
 clear
 
 #	Temas a ver
-#	1. Recorte irregular de una grilla (con una máscara)
+#	1. Recorte irregular de una grilla
 
 #	Definir variables del mapa
 #	-----------------------------------------------------------------------------------------------------------
 #	Titulo del mapa
-	title=27_Mascara_Cuenca_Parana
+	title=47_B_Mascara_Cuenca_Parana
+	title=$(basename $0 .sh)
 	echo $title
 
 #	Region: Argentina
@@ -16,14 +17,18 @@ clear
 #	Proyeccion Mercator (M)
 	PROJ=M15c
 
-#	Grilla
-	DEM=@earth_relief
+#	Resolucion de la grilla
+	RES=15s
+	RES=02m
+
+#	Base de datos de GRILLAS
+	DEM=@earth_relief_$RES
 
 # 	Nombre archivo de salida
-	CUT0=tmp_$title.nc
-	CUT1=tmp_${title}_1.nc
-	MASCARA=tmp_${title}_mascara.nc
-	POLIGONO=tmp_poligono.txt
+	CUT=tmp_$title.nc
+	CUT1=tmp_$title-1.nc
+	MASK=tmp_$title-2.nc
+	CLIP=tmp_clip.txt
 
 #	Parametros Generales
 #	-----------------------------------------------------------------------------------------------------------
@@ -48,29 +53,32 @@ gmt begin $title png
 #	Crear grilla
 #	-------------------------------------------------------------
 #	Recortar la grilla (rectangular)
-	gmt grdcut $DEM -G$CUT1 -R$REGION -J$PROJ
+	gmt grdcut $DEM -G$CUT1 -R$REGION
 
-#	Crear/Definir poligono irregular para la máscara
-	cat Cuenca_Parana.txt > $POLIGONO
-#	gmt coast -M > $CLIP -EPY
-#	gmt coast -M > $CLIP -EAR.A,AR.Y
-#	gmt grdcontour $CUT1  -C+3000 -D$CLIP
+#	Crear/Definir poligono irregular
+#	cat Cuenca_Parana.txt > $CLIP
+	gmt coast -M -EPY > tmp_PY
+
+#	Crear poligono con agujero ("dona") -Sh
+	gmt spatial Cuenca_Parana.txt tmp_PY -Sh > $CLIP
+#	gmt spatial Cuenca_Parana.txt tmp_CLIP -Ii > $CLIP
 
 #	Crear Mascara con valores dentro del poligono (-Nfuera/borde/dentro)
-	gmt grdmask -R$CUT1 $POLIGONO -G$MASCARA -NNaN/NaN/1
-	gmt grdmask -R$CUT1 $POLIGONO -G$MASCARA -N1/NaN/NaN
+	gmt grdmask -R$CUT1 $CLIP -G$MASK -NNaN/NaN/1
 
 #	Recortar 
-	gmt grdmath $CUT1 $MASCARA MUL = $CUT
+	gmt grdmath $CUT1 $MASK MUL = $CUT
 
 #	Crear Mapa
 #	-------------------------------------------------------------
+#	gmt makecpt -Cdem4
+
 #	Crear Imagen a partir de grilla con sombreado y cpt. -Q: Nodos sin datos sin color 
-	gmt grdimage $CUT -I
+	gmt grdimage $CUT -I    -Cdem4
 #	gmt grdimage $CUT -I -Q -Cdem4
 
 #	Agregar escala de colores a partir de CPT (-C). Posición (x,y) +wlargo/ancho. Anotaciones (-Ba). Leyenda (+l). 
-	gmt colorbar -C -I -DJRM+o0.3c/0+w14/0.618c  -Ba+l"Alturas (km)" -W0.001
+#	gmt colorbar -Cdem4 -I -DJRM+o0.3c/0+w14/0.618c  -Ba+l"Alturas (km)" -W0.001
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Dibujar frame
@@ -91,10 +99,7 @@ gmt begin $title png
 
 #	-----------------------------------------------------------------------------------------------------------
 #	Cerrar sesion y mostrar figura
-gmt end # show
+gmt end
 
-	rm tmp_* gmt.*
 
-#	Ejercicios sugeridos
-#	1. Probar otros poligonos.
-#	2. Invertir la mascara. 
+rm tmp_* gmt.*
