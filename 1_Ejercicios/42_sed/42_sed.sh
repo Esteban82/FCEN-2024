@@ -111,6 +111,9 @@ echo "    Otra  línea   con   más espacios. ">> espacios.txt
 # F. Combina las 3 opciones anteriores
 #sed 's/^ *//;s/ *$//;s/ \{1,\}/ /g' espacios.txt > espacios2.txt
 
+# G. Reemplazar tabulaciones por espacios en un archivo
+#sed 's/\t/ /g' tab.txt > espacios.txt
+
 # Borrar arhivos
  rm -f coordenadas.txt $ARCHIVO espacios*.txt
 
